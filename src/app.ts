@@ -1,19 +1,20 @@
-import express, { Request, Response } from "express";
-import cors from "cors";
-const app = express();
+import express, { Request, Response } from 'express'
+import cors from 'cors'
+const app = express()
 
 // parsers
-app.use(express.json());
-app.use(cors());
+app.use(express.json())
+app.use(cors())
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("hello world!");
-});
+app.get('/', (req: Request, res: Response) => {
+  var a = 10
+  res.send(a)
+})
 
-app.post("/", (req: Request, res: Response) => {
-  console.log(req.body);
+app.post('/', (req: Request, res: Response) => {
+  console.log(req.body)
 
-  res.send("post request");
-});
+  res.send('post request')
+})
 
-export default app;
+export default app
