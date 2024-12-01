@@ -19,6 +19,21 @@ const createStudent = async (req: Request, res: Response) => {
   }
 }
 
+const getAllStudents = async (req: Request, res: Response) => {
+  try {
+    const result = await studentServices.getAllStudentsFormDB()
+
+    res.status(200).json({
+      success: true,
+      message: 'Students fetched successfully',
+      data: result,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const studentControllers = {
   createStudent,
+  getAllStudents,
 }
