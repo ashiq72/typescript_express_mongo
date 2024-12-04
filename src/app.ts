@@ -15,10 +15,4 @@ app.get('/', (req: Request, res: Response) => {
   res.send(a)
 })
 
-app.post('/', (req: Request, res: Response) => {
-  console.log(req.body)
-
-  res.send('post request')
-})
-
 export default app
