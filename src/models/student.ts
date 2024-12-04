@@ -4,7 +4,7 @@ import {
   localGurdian,
   Student,
   userName,
-} from './student/student.interface'
+} from '../interfaces/student.interface'
 
 const userNameSchema = new Schema<userName>({
   firstName: {

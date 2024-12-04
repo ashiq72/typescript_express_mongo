@@ -1,10 +1,8 @@
 import mongoose from 'mongoose'
-import { Student } from './student.interface'
-import { StudentModel } from '../student.model'
+import { Student } from '../interfaces/student'
+import { StudentModel } from '../models/student'
 
 const createStudentIntoDB = async (student: Student) => {
-  // Connect to your MongoDB database here
-  // await mongoose.connect(database_url);
   const result = await StudentModel.create(student)
   return result
 }

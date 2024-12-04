@@ -1,18 +1,18 @@
-import app from "./app";
-import mongoose from "mongoose";
-import config from "./app/config";
+import app from './app'
+import mongoose from 'mongoose'
+import config from './config'
 
-const PORT = 4000;
+const PORT = 4000
 
-async function bootstarp() {
+async function connectDB() {
   try {
-    await mongoose.connect(config.database_url as string); // eta keno
+    await mongoose.connect(config.database_url as string) // eta keno
     app.listen(PORT, () =>
-      console.log(`Server is running http://localhost:${PORT}`)
-    );
+      console.log(`Server is running http://localhost:${PORT}`),
+    )
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
-bootstarp();
+connectDB()
