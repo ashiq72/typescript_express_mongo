@@ -1,10 +1,5 @@
 import { Schema, model, connect } from 'mongoose'
-import {
-  Gurdian,
-  localGurdian,
-  Student,
-  userName,
-} from '../interfaces/student.interface'
+import { Gurdian, localGurdian, Student, userName } from '../interfaces/student'
 
 const userNameSchema = new Schema<userName>({
   firstName: {
