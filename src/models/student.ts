@@ -4,10 +4,22 @@ import { Gurdian, localGurdian, Student, userName } from '../interfaces/student'
 const userNameSchema = new Schema<userName>({
   firstName: {
     type: String,
-    required: true,
+    required: [true, 'First name is required'],
+    maxlength: [20, 'More than 20 characters'],
+    trim: true,
+    validate: {
+      validator: function (value: String) {
+        const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1)
+        if (value !== firstNameStr) {
+          return false
+        }
+        return false
+      },
+      message: '{VALUE} is not data',
+    },
   },
   middleName: { type: 'string' },
-  lastName: { type: 'string', required: true },
+  lastName: { type: 'string', required: [true, 'First name is required'] },
 })
 
 const gurdianSchema = new Schema<Gurdian>({
@@ -27,20 +39,40 @@ const localGurdianSchemas = new Schema<localGurdian>({
 })
 
 const studentSchema = new Schema<Student>({
-  id: { type: 'string' },
-  name: userNameSchema,
-  gender: ['male', 'female'],
+  id: { type: 'string', required: true, unique: true },
+  name: {
+    type: userNameSchema,
+    required: true,
+  },
+  gender: {
+    type: String,
+    enum: {
+      values: ['male', 'female', 'other'],
+      message: '{VALUE} is not valid',
+    },
+    required: true,
+  },
   dateOfBirth: { type: 'String' },
   email: { type: String, required: true },
   contactNo: { type: 'String', required: true },
   emargencyNo: { type: 'String', required: true },
-  bloodGroup: { type: ['A+', 'A-', 'B'], default: null },
+  bloodGroup: {
+    type: String,
+    enum: ['A+', 'A-', 'B'],
+  },
   presentAddress: { type: 'String', required: true },
   permanentAddress: { type: 'String', required: true },
-  gurdian: gurdianSchema,
-  localGurdian: localGurdianSchemas,
+  gurdian: {
+    type: gurdianSchema,
+    required: true,
+  },
+  localGurdian: { type: localGurdianSchemas, required: true },
   profileImage: { type: String },
-  isActive: ['active', 'blocked'],
+  isActive: {
+    type: String,
+    enum: ['active', 'blocked'],
+    default: 'active',
+  },
 })
 
 export const StudentModel = model<Student>('Student', studentSchema)
