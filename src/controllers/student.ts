@@ -33,7 +33,23 @@ const getAllStudents = async (req: Request, res: Response) => {
   }
 }
 
+const getSigleStudent = async (req: Request, res: Response) => {
+  try {
+    const { studentId } = req.params
+    const result = await studentServices.getSingleStudentFromDB(studentId)
+
+    res.status(200).json({
+      sucess: true,
+      message: 'Single Student fatched successfully',
+      data: result,
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const studentControllers = {
   createStudent,
   getAllStudents,
+  getSigleStudent,
 }
