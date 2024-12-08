@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
 import { Student } from '../interfaces/student'
 import { StudentModel } from '../models/student'
 
 const createStudentIntoDB = async (student: Student) => {
   const result = await StudentModel.create(student)
+
   return result
 }
 

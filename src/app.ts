@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { StudentRoutes } from './routes/student.route'
+import { CourseRoutes, StudentRoutes } from './routes/student.route'
 const app = express()
 
 // parsers
@@ -9,10 +9,10 @@ app.use(cors())
 
 //applications routes
 app.use('/api/v1/students', StudentRoutes)
+app.use('/api/v1/coures', CourseRoutes)
 
 app.get('/', (req: Request, res: Response) => {
-  var a = 10
-  res.send(a)
+  res.send('Home page')
 })
 
 export default app

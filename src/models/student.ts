@@ -28,7 +28,10 @@ const localGurdianSchemas = new Schema<localGurdian>({
 
 const studentSchema = new Schema<Student>({
   id: { type: 'string' },
-  name: userNameSchema,
+  name: {
+    type: userNameSchema, // Wrap in `type` field
+    required: true,
+  },
   gender: ['male', 'female'],
   dateOfBirth: { type: 'String' },
   email: { type: String, required: true },
