@@ -3,7 +3,7 @@ import { studentServices } from '../services/student'
 
 const createStudent = async (req: Request, res: Response) => {
   try {
-    const student = req.body.student
+    const student = req.body
 
     // will call service function to send this data
 
