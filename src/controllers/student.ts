@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { studentServices } from '../services/student'
+import Joi from 'joi'
 
 const createStudent = async (req: Request, res: Response) => {
   try {
@@ -18,6 +19,15 @@ const createStudent = async (req: Request, res: Response) => {
     console.log(error)
   }
 }
+
+// creating a schema validation joi
+
+const JoivalidationSchema = Joi.object({
+  id: Joi.string(),
+  name: {
+    firstName: Joi.string().max(20).required(),
+  },
+})
 
 const getAllStudents = async (req: Request, res: Response) => {
   try {
